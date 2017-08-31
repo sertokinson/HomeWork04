@@ -87,7 +87,7 @@ class CountMapIml<E> implements CountMap<E> {
 
 
     @Override
-    public Map toMap() {
+    public java.util.Map toMap() {
         if(m.size()==0)
         for(int i=0;i<a.length;i++){
            m.put((E)a[i],getCount((E)a[i]));
