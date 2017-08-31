@@ -1,14 +1,12 @@
 package com.sbt.javaschool.homework;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
-class MyComparator implements Comparator<String> {
+class MyComparator<T> implements Comparator<T> {
 
-    public int compare(String a, String b){
-        if (a.length()==b.length())
-            return a.compareTo(b);
-        else
-            return a.length()-b.length();
-
+    public int compare(T a, T b){
+        return a.toString().compareTo(b.toString());
     }
 }

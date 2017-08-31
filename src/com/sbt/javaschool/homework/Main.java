@@ -46,7 +46,8 @@ public class Main {
         list=x.newArrayList();
         list.add(3);
         list.add(2);
-       list=x.range(list,1,2);
+        MyComparator<Integer> comp=new MyComparator<>();
+      list=x.range(list,1,3,comp);
         System.out.println( list.get(0));
 
 
