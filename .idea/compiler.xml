@@ -12,8 +12,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="generics" target="1.5" />
-      <module name="hw" target="1.5" />
-      <module name="present" target="1.5" />
+      <module name="hw" target="1.7" />
+      <module name="present" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -43,12 +43,12 @@ public class Main {
         System.out.println(map2.toMap().get("c"));
         CollectionUtils<Integer> x=new CollectionUtils<>();
         List<Integer> list;
-        list=x.newArrayList();
+       /* list=x.newArrayList();
         list.add(3);
         list.add(2);
         MyComparator<Integer> comp=new MyComparator<>();
       list=x.range(list,1,3,comp);
-        System.out.println( list.get(0));
+        System.out.println( list.get(0));*/
 
 
 

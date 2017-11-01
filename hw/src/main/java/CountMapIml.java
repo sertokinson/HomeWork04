@@ -1,34 +1,40 @@
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
-class CountMapIml<E> implements CountMap<E> {
-    Object[] a, b;
-    int index = -1;
+class CountMapIml<E> implements CountMap<E>, Iterable<E> {
+
+    private E[] a, b;
+    private int index = 0;
     Map<E, Integer> m = new HashMap<>();
 
     @Override
     public void add(E o) {
-        index = index + 2;
-        a = new Object[index];
+        index++;
+        a = (E[])new Object[index];
         if (b != null) {
             for (int i = 0; i < b.length; i++)
                 a[i] = b[i];
         }
-        a[--index] = o;
+        a[index-1] = o;
         b = a;
-
     }
 
     @Override
     public int getCount(E o) {
         int count = 0;
         for (int i = 0; i < a.length; i++)
-            if (o == a[i])
+            if (a[i].equals(o))
                 count++;
         return count;
     }
 
     @Override
+    public int remove(E o) {
+        return 0;
+    }
+
+    /*@Override
     public int remove(E o) {
         Object[] c = new Object[a.length - 1];
         for (int i = 0; i < a.length - 1; i++) {
@@ -42,7 +48,7 @@ class CountMapIml<E> implements CountMap<E> {
         }
         a = c;
         return b.length;
-    }
+    }*/
 
     @Override
     public int size() {
@@ -105,5 +111,10 @@ class CountMapIml<E> implements CountMap<E> {
 
     public int length() {
         return a.length;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new CountMapIterator<>(a);
     }
 }

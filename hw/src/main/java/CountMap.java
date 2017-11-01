@@ -1,6 +1,7 @@
+import java.util.Iterator;
 import java.util.Map;
 
-public interface CountMap<E> {
+public interface CountMap<E> extends Iterable<E> {
 
     /**
      * Добавляет элемент в этот контейнер
@@ -10,7 +11,7 @@ public interface CountMap<E> {
 
     /**
      * @param o
-     * @return количество элементов данного элемента
+     * @return количество добавлений данного элемента
      */
     int getCount(E o);
 
@@ -54,4 +55,6 @@ public interface CountMap<E> {
      * @return размер контейнера
      */
     int length();
+
+    Iterator iterator();
 }
