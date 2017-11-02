@@ -31,7 +31,7 @@ public interface CountMap<E> extends Iterable<E> {
      * Добавляет все элементы из source в текущий контейнер, при совпадении ключей, значения суммируются
      * @param source
      */
-    void addAll(CountMap source);
+    void addAll(CountMap<E> source);
 
     /**
      * Где ключ - добавленный элемент, значение - количество его добавлений

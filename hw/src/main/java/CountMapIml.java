@@ -6,64 +6,57 @@ class CountMapIml<E> implements CountMap<E>, Iterable<E> {
 
     private E[] a, b;
     private int index = 0;
-    Map<E, Integer> m = new HashMap<>();
+    private Map<E, Integer> m = new HashMap<>();
 
     @Override
     public void add(E o) {
         index++;
-        a = (E[])new Object[index];
+        a = (E[]) new Object[index];
         if (b != null) {
-            for (int i = 0; i < b.length; i++)
-                a[i] = b[i];
+            System.arraycopy(b,0,a,0,b.length);
         }
-        a[index-1] = o;
+        a[index - 1] = o;
         b = a;
     }
 
     @Override
     public int getCount(E o) {
         int count = 0;
-        for (int i = 0; i < a.length; i++)
-            if (a[i].equals(o))
+        for (E e:a) {
+            if(e.equals(o))
                 count++;
+        }
         return count;
     }
 
     @Override
     public int remove(E o) {
-        return 0;
-    }
-
-    /*@Override
-    public int remove(E o) {
-        Object[] c = new Object[a.length - 1];
-        for (int i = 0; i < a.length - 1; i++) {
-            c[i] = a[i];
-            if (c[i] == o) {
-                for (int j = i; j < a.length - 1; j++) {
-                    c[j] = a[j + 1];
-                }
-                break;
-            }
+        b = (E[]) new Object[a.length - 1];
+        int j = 0, count = getCount(o);
+        for (int i = 0; i < a.length; i++) {
+            if (a[i].equals(o))
+                i++;
+            b[j++] = a[i];
         }
-        a = c;
-        return b.length;
-    }*/
+        index--;
+        a = b;
+        return count;
+    }
 
     @Override
     public int size() {
-        Object[] c = new Object[a.length];
         int count = 0;
-        for (int i = 0; i < c.length; i++)
-            c[i] = a[i];
-        for (int i = 0; i < c.length; i++) {
-            if (c[i] != null) {
+        b = (E[]) new Object[a.length];
+        System.arraycopy(a,0,b,0,a.length);
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != null) {
                 count++;
-                for (int j = i + 1; j < c.length; j++)
-                    if (c[i] == c[j])
-                        c[j] = null;
+                for (int j = i + 1; j < a.length; j++)
+                    if (a[i].equals(a[j]))
+                        a[j] = null;
             }
         }
+        a = b;
         return count;
     }
 
@@ -79,11 +72,11 @@ class CountMapIml<E> implements CountMap<E>, Iterable<E> {
                 }
             if (f == 0) m.put((E) a[i], getCount((E) a[i]));
         }
-        for (int i = 0; i < source.length(); i++){
+        for (int i = 0; i < source.length(); i++) {
             for (int j = 0; j < a.length; j++)
-                if (source.get(i) == a[j]){
-                source.remove(a[j]);
-                break;
+                if (source.get(i) == a[j]) {
+                    source.remove(a[j]);
+                    break;
                 }
             m.put((E) source.get(i), source.getCount(source.get(i)));
         }
@@ -92,21 +85,22 @@ class CountMapIml<E> implements CountMap<E>, Iterable<E> {
 
     @Override
     public Map toMap() {
-        if(m.size()==0)
-        for(int i=0;i<a.length;i++){
-           m.put((E)a[i],getCount((E)a[i]));
-        }
+        if (m.size() == 0)
+            for (E e:a) {
+                m.put(e, getCount(e));
+            }
         return m;
     }
 
     @Override
     public void toMap(Map<E, Integer> destination) {
-        for (int i = 0; i < a.length; i++)
-            destination.put((E) a[i], getCount((E) a[i]));
+        for (E e:a) {
+            destination.put(e, getCount(e));
+        }
     }
 
     public E get(int i) {
-        return (E) a[i];
+        return a[i];
     }
 
     public int length() {
