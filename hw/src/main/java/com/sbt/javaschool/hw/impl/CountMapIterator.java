@@ -1,10 +1,12 @@
+package com.sbt.javaschool.hw.impl;
+
 import java.util.Iterator;
 
 public class CountMapIterator<E> implements Iterator<E> {
     private final E[]data;
     private int index=0;
 
-    public CountMapIterator(E[] data) {
+    CountMapIterator(E[] data) {
         this.data = data;
     }
 

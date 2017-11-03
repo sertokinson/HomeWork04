@@ -1,8 +1,12 @@
+package com.sbt.javaschool.hw.impl;
+
+import com.sbt.javaschool.hw.api.CountMap;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-class CountMapIml<E> implements CountMap<E>, Iterable<E> {
+public class CountMapIml<E> implements CountMap<E>, Iterable<E> {
 
     private E[] a, b;
     private int index = 0;

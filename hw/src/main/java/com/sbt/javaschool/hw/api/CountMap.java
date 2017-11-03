@@ -1,3 +1,5 @@
+package com.sbt.javaschool.hw.api;
+
 import java.util.Iterator;
 import java.util.Map;
 
@@ -56,5 +58,5 @@ public interface CountMap<E> extends Iterable<E> {
      */
     int length();
 
-    Iterator iterator();
+    Iterator<E> iterator();
 }
